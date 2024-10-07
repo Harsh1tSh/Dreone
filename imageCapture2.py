@@ -1,6 +1,7 @@
 from djitellopy import tello
 import KeyPressModule as kp
 from time import sleep
+import cv2
 
 kp.init()
 me = tello.Tello()
@@ -41,3 +42,9 @@ while True:
     vals = getKeyBoardInput()
     me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
     sleep(0.05)
+
+
+    img = me.get_frame_read().frame
+    img = cv2.resize(img, (640, 480))
+    cv2.imshow("Image", img)
+    cv2.waitKey(1)
