@@ -3,9 +3,9 @@ import KeyPressModule as kp
 from time import sleep
 
 kp.init()
-me = tello.Tello()
-me.connect()
-print(me.get_battery())
+# me = tello.Tello()
+# me.connect()
+# print(me.get_battery())
 
 def getKeyBoardInput():
     # lr = left, right
@@ -26,11 +26,13 @@ def getKeyBoardInput():
     if kp.getKey("a"): yv = speed
     elif kp.getKey("d"): yv = -speed
 
-    if kp.getKey("q"): return me.land()
-    print("Land the fricking Drone")
+    if kp.getKey("q"): 
+        # return me.land()
+        print("Land the fricking Drone")
 
-    if kp.getKey("e"): return me.takeoff()
-    print("Let's goo")
+    if kp.getKey("e"): 
+        #return me.takeoff()
+        print("Let's goo")
 
 
     return [lr, fb, ud, yv]
@@ -39,5 +41,7 @@ def getKeyBoardInput():
 while True:
     # you see i dont have a drone soooooooooo
     vals = getKeyBoardInput()
-    me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
+    # me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
+    z = [vals[0],vals[1],vals[2],vals[3]]
+    print(z)
     sleep(0.05)
